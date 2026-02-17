@@ -224,12 +224,12 @@
     .showcase-scroll::-webkit-scrollbar { display: none; }
     .showcase-item {
       flex: 0 0 auto; scroll-snap-align: center;
-      width: 240px; border-radius: 1.5rem; overflow: hidden;
+      width: 240px; height: 520px; border-radius: 1.5rem; overflow: hidden;
       box-shadow: 0 12px 40px rgba(0,0,0,0.1);
       transition: transform 0.3s;
     }
     .showcase-item:hover { transform: scale(1.03); }
-    .showcase-item img { width: 100%; display: block; }
+    .showcase-item img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
 
     /* ── Pricing ─────────────────────────────────── */
     .pricing-cards {
@@ -292,14 +292,37 @@
     }
     .print-features li::before { content: '📖'; }
 
-    /* ── Testimonial ─────────────────────────────── */
+    /* ── Testimonial carousel ────────────────────── */
     .testimonial { text-align: center; background: var(--bg-card); }
+    .testimonial-carousel { position: relative; max-width: 700px; margin: 0 auto; }
+    .testimonial-slide {
+      display: none; animation: fadeIn 0.4s ease;
+    }
+    .testimonial-slide.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     .testimonial blockquote {
       font-family: 'Nunito', sans-serif; font-size: 1.4rem; font-weight: 600;
       font-style: italic; max-width: 640px; margin: 0 auto 1rem;
       color: var(--text);
     }
-    .testimonial cite { font-style: normal; color: var(--text-muted); font-size: 0.9rem; }
+    .testimonial cite { font-style: normal; color: var(--text-muted); font-size: 0.9rem; display: block; margin-bottom: 0.25rem; }
+    .testimonial .cite-role { font-size: 0.8rem; color: var(--text-muted); opacity: 0.7; }
+    .testimonial-nav {
+      display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.5rem;
+    }
+    .testimonial-btn {
+      width: 2.5rem; height: 2.5rem; border-radius: 50%; border: 2px solid rgba(0,0,0,0.1);
+      background: var(--bg-card); cursor: pointer; font-size: 1rem; display: flex;
+      align-items: center; justify-content: center; transition: all 0.2s;
+      color: var(--text-muted);
+    }
+    .testimonial-btn:hover { border-color: var(--pink); color: var(--pink-dark); }
+    .testimonial-dots { display: flex; gap: 0.4rem; }
+    .testimonial-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: rgba(0,0,0,0.15);
+      transition: all 0.3s; cursor: pointer;
+    }
+    .testimonial-dot.active { background: var(--pink); width: 24px; border-radius: 4px; }
 
     /* ── CTA ─────────────────────────────────────── */
     .cta {
@@ -437,11 +460,11 @@
       <h1>Track, remember &amp; <span>cherish every moment</span></h1>
       <p>
         The all-in-one baby tracker and memory keeper. Log feedings, sleep &amp; diapers,
-        capture milestones, chat with a baby-knowledge-powered AI, create beautiful
-        stories and print a real baby book out of them!
+        capture milestones, get expert guidance from an AI that knows your child,
+        create beautiful stories and print a real baby book!
       </p>
       <div class="hero-buttons">
-        <a href="#download" class="btn-primary">📱 Download Free</a>
+        <a href="#download" class="btn-primary">Download Free</a>
         <a href="#features" class="btn-secondary">See features →</a>
       </div>
     </div>
@@ -512,9 +535,6 @@
       <div class="showcase-item"><img src="images/BBA_UI.png" alt="Clean, intuitive tracking" loading="lazy" /></div>
       <div class="showcase-item"><img src="images/BBA_UI2.png" alt="Daily overview at a glance" loading="lazy" /></div>
       <div class="showcase-item"><img src="images/BBA_UI3.png" alt="Effortless logging" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BabyBabyApp_page3.png" alt="Memories & milestones" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BabyBabyApp_page4.png" alt="Smart insights" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BBA_settings.png" alt="Personalized settings" loading="lazy" /></div>
     </div>
   </div>
 </section>
@@ -642,7 +662,7 @@
     <div class="pricing-cards">
       <div class="price-card">
         <h3>Free</h3>
-        <div class="price-amount">$0<span>/forever</span></div>
+        <div class="price-amount">$0<span>/month</span></div>
         <ul>
           <li>Unlimited tracking (feeds, sleep, diapers)</li>
           <li>Memory keeping &amp; milestones</li>
@@ -674,13 +694,76 @@
   </div>
 </section>
 
-<!-- ═══ TESTIMONIAL ═══ -->
+<!-- ═══ TESTIMONIALS ═══ -->
 <section class="testimonial">
   <div class="section-inner">
-    <blockquote>"I've tried five different baby trackers. BabyBaby is the only one that combines tracking AND a real baby book. I'm obsessed."</blockquote>
-    <cite>— A very happy parent</cite>
+    <div class="section-header" style="margin-bottom:2rem">
+      <h2>Parents are talking</h2>
+    </div>
+    <div class="testimonial-carousel" id="testimonialCarousel">
+      <div class="testimonial-slide active">
+        <blockquote>"I recommended it to a mum yesterday and she already texted me saying she's in love with it. This is going in my standard new-parent toolkit."</blockquote>
+        <cite>— Sarah K.</cite>
+        <span class="cite-role">Certified Midwife, 12 years experience</span>
+      </div>
+      <div class="testimonial-slide">
+        <blockquote>"Three kids in and I finally understand wake windows. I'm not even exaggerating — we went from 4 night wakings to 1 in a week. I actually feel like a functioning human again."</blockquote>
+        <cite>— Jenna M.</cite>
+        <span class="cite-role">Mum of three, ages 4, 2 &amp; 5 months</span>
+      </div>
+      <div class="testimonial-slide">
+        <blockquote>"I've tried five different baby trackers. BabyBaby is the only one that combines tracking AND a real baby book. My mother-in-law cried when we gave her the printed book for Christmas."</blockquote>
+        <cite>— Priya R.</cite>
+        <span class="cite-role">First-time mum</span>
+      </div>
+      <div class="testimonial-slide">
+        <blockquote>"Maya told me to check for a lip tie when my son wasn't latching. Our pediatrician confirmed it the next day. I would have struggled for weeks without that nudge."</blockquote>
+        <cite>— Tom &amp; Lisa D.</cite>
+        <span class="cite-role">Parents to Leo, 3 months</span>
+      </div>
+      <div class="testimonial-slide">
+        <blockquote>"I record a voice story every night after bedtime. It takes 30 seconds and the AI turns my ramblings into something beautiful. I'm going to treasure this book forever."</blockquote>
+        <cite>— Anika W.</cite>
+        <span class="cite-role">Mum of one, maternity leave</span>
+      </div>
+    </div>
+    <div class="testimonial-nav">
+      <button class="testimonial-btn" onclick="changeSlide(-1)" aria-label="Previous testimonial">←</button>
+      <div class="testimonial-dots" id="testimonialDots"></div>
+      <button class="testimonial-btn" onclick="changeSlide(1)" aria-label="Next testimonial">→</button>
+    </div>
   </div>
 </section>
+
+<script>
+  // Testimonial carousel
+  const slides = document.querySelectorAll('.testimonial-slide');
+  const dotsContainer = document.getElementById('testimonialDots');
+  let currentSlide = 0;
+
+  // Create dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'testimonial-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+  });
+
+  function goToSlide(n) {
+    slides[currentSlide].classList.remove('active');
+    dotsContainer.children[currentSlide].classList.remove('active');
+    currentSlide = n;
+    slides[currentSlide].classList.add('active');
+    dotsContainer.children[currentSlide].classList.add('active');
+  }
+
+  function changeSlide(dir) {
+    goToSlide((currentSlide + dir + slides.length) % slides.length);
+  }
+
+  // Auto-advance every 7 seconds
+  setInterval(() => changeSlide(1), 7000);
+</script>
 
 <!-- ═══ CTA ═══ -->
 <section class="cta" id="download">
