@@ -151,19 +151,32 @@
 
     .hero-phones {
       position: relative; display: flex; justify-content: center;
+      min-height: 520px;
     }
     .phone-frame {
-      width: 260px; border-radius: 2rem; overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
-      transition: transform 0.4s ease;
+      width: 230px; border-radius: 2rem; overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.04);
+      transition: transform 0.5s cubic-bezier(.22,.68,0,1.1);
+      position: absolute;
     }
-    .phone-frame:hover { transform: translateY(-8px); }
     .phone-frame img { width: 100%; display: block; }
-    .phone-back {
-      position: absolute; right: -30px; top: 30px; z-index: -1;
-      transform: rotate(6deg);
-      opacity: 0.8;
+    .phone-front {
+      z-index: 3; left: 50%; top: 0;
+      transform: translateX(-55%) rotate(-2deg);
     }
+    .phone-front:hover { transform: translateX(-55%) rotate(-2deg) translateY(-12px); }
+    .phone-mid {
+      z-index: 2; right: -10px; top: 25px;
+      transform: rotate(5deg);
+      opacity: 0.92;
+    }
+    .phone-mid:hover { transform: rotate(5deg) translateY(-12px); }
+    .phone-back {
+      z-index: 1; left: -10px; top: 50px;
+      transform: rotate(-7deg);
+      opacity: 0.78;
+    }
+    .phone-back:hover { transform: rotate(-7deg) translateY(-12px); }
 
     /* ── Section base ────────────────────────────── */
     section { padding: 5rem 1.5rem; }
@@ -315,17 +328,87 @@
     .footer-links a:hover { color: #fff; }
     .footer-brand { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.1rem; color: #fff; margin-bottom: 0.5rem; }
 
+    /* ── AI section ────────────────────────────── */
+    .ai-section {
+      background: linear-gradient(180deg, #f5f3ff 0%, #ede9fe 50%, #f5f3ff 100%);
+    }
+    .ai-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    .ai-text h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 1rem; }
+    .ai-text p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.05rem; line-height: 1.7; }
+    .ai-features, .story-features { list-style: none; margin-bottom: 2rem; }
+    .ai-features li, .story-features li {
+      padding: 0.5rem 0; font-size: 0.95rem; display: flex; align-items: center; gap: 0.6rem;
+    }
+    .ai-features li::before { content: '✨'; }
+    .phone-showcase {
+      max-width: 280px; margin: 0 auto;
+      border-radius: 2rem; overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.04);
+      transition: transform 0.4s ease;
+    }
+    .phone-showcase:hover { transform: translateY(-8px) scale(1.01); }
+    .phone-showcase img { width: 100%; display: block; }
+    .ai-supporting {
+      display: flex; gap: 1.5rem; justify-content: center; margin-top: 2.5rem;
+    }
+    .ai-supporting-item {
+      width: 240px; border-radius: 1.5rem; overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .ai-supporting-item:hover { transform: scale(1.03); }
+    .ai-supporting-item img { width: 100%; display: block; }
+
+    /* ── Voice Story section ──────────────────────── */
+    .story-section {
+      background: linear-gradient(180deg, var(--bg) 0%, #fef3c7 50%, var(--bg) 100%);
+    }
+    .story-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    .story-text h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 1rem; }
+    .story-text p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.05rem; line-height: 1.7; }
+    .story-features li::before { content: '🎙️'; }
+    .story-supporting {
+      display: flex; gap: 1.5rem; justify-content: center; margin-top: 2.5rem;
+    }
+    .story-supporting-item {
+      width: 240px; border-radius: 1.5rem; overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .story-supporting-item:hover { transform: scale(1.03); }
+    .story-supporting-item img { width: 100%; display: block; }
+
+    /* ── Section divider ─────────────────────────── */
+    .section-divider {
+      text-align: center; padding: 1rem 0; font-size: 1.5rem;
+      opacity: 0.3; letter-spacing: 0.5em;
+    }
+
     /* ── Responsive ──────────────────────────────── */
     @media (max-width: 768px) {
       .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
       .hero-text { max-width: 100%; }
       .hero p { margin-left: auto; margin-right: auto; }
       .hero-buttons { justify-content: center; }
-      .phone-back { display: none; }
-      .phone-frame { width: 220px; }
+      .hero-phones { min-height: 380px; }
+      .phone-frame { width: 170px; }
+      .phone-front { transform: translateX(-55%) rotate(-2deg); }
+      .phone-mid { right: 5px; }
+      .phone-back { left: 5px; }
       .print-inner { grid-template-columns: 1fr; text-align: center; }
       .print-image { order: -1; max-width: 400px; margin: 0 auto; }
       .print-features { text-align: left; max-width: 360px; margin-left: auto; margin-right: auto; }
+      .ai-inner { grid-template-columns: 1fr; text-align: center; }
+      .ai-features { text-align: left; max-width: 360px; margin-left: auto; margin-right: auto; }
+      .ai-supporting { flex-direction: column; align-items: center; }
+      .story-inner { grid-template-columns: 1fr; text-align: center; }
+      .story-phone { order: -1; }
+      .story-features { text-align: left; max-width: 360px; margin-left: auto; margin-right: auto; }
+      .story-supporting { flex-direction: column; align-items: center; }
       .nav-links a.hide-mobile { display: none; }
     }
   </style>
@@ -338,7 +421,8 @@
     <a href="#" class="logo">👶 BabyBaby</a>
     <div class="nav-links">
       <a href="#features" class="hide-mobile">Features</a>
-      <a href="#pricing" class="hide-mobile">Pricing</a>
+      <a href="#ai" class="hide-mobile">AI</a>
+      <a href="#stories" class="hide-mobile">Stories</a>
       <a href="#print" class="hide-mobile">Print</a>
       <a href="#download" class="btn-nav">Get the App</a>
     </div>
@@ -362,11 +446,14 @@
       </div>
     </div>
     <div class="hero-phones">
-      <div class="phone-frame">
-        <img src="images/BabyBabyApp_page1.png" alt="BabyBaby app — home screen" loading="lazy" />
-      </div>
       <div class="phone-frame phone-back">
-        <img src="images/BabyBabyApp_page2.png" alt="BabyBaby app — tracking" loading="lazy" />
+        <img src="images/BBA_BookOverview.png" alt="BabyBaby — Your memories become a real book" loading="lazy" />
+      </div>
+      <div class="phone-frame phone-front">
+        <img src="images/BabyBabyApp_page1.png" alt="BabyBaby — Home screen" loading="lazy" />
+      </div>
+      <div class="phone-frame phone-mid">
+        <img src="images/BabyBabyApp_page2.png" alt="BabyBaby — Smart tracking" loading="lazy" />
       </div>
     </div>
   </div>
@@ -418,19 +505,91 @@
 <section class="showcase" id="screenshots">
   <div class="section-inner">
     <div class="section-header">
-      <h2>Designed with love</h2>
-      <p>A beautiful, intuitive interface that new parents can use with one hand at 3 AM.</p>
+      <h2>Designed for 3 AM</h2>
+      <p>A warm, intuitive interface you can navigate with one hand while holding your baby in the other.</p>
     </div>
     <div class="showcase-scroll">
-      <div class="showcase-item"><img src="images/BabyBabyApp_page1.png" alt="Home screen" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BabyBabyApp_page2.png" alt="Tracking" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BBA_Memories.png" alt="Baby book chapters" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BabyBabyApp_page3.png" alt="Memories" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BabyBabyApp_page3.1.PNG" alt="Milestones" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BabyBabyApp_page3.2.png" alt="AI Story" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BabyBabyApp_page4.png" alt="Insights" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BBA_settings.png" alt="Settings" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BBA_Signup.png" alt="Premium plans" loading="lazy" /></div>
+      <div class="showcase-item"><img src="images/BBA_UI.png" alt="Clean, intuitive tracking" loading="lazy" /></div>
+      <div class="showcase-item"><img src="images/BBA_UI2.png" alt="Daily overview at a glance" loading="lazy" /></div>
+      <div class="showcase-item"><img src="images/BBA_UI3.png" alt="Effortless logging" loading="lazy" /></div>
+      <div class="showcase-item"><img src="images/BabyBabyApp_page3.png" alt="Memories & milestones" loading="lazy" /></div>
+      <div class="showcase-item"><img src="images/BabyBabyApp_page4.png" alt="Smart insights" loading="lazy" /></div>
+      <div class="showcase-item"><img src="images/BBA_settings.png" alt="Personalized settings" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MEET MAYA — AI CHAT ═══ -->
+<section class="ai-section" id="ai">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="hero-badge" style="background:rgba(167,139,250,0.12);color:#7c3aed;margin:0 auto 1rem">🧠 AI-Powered</div>
+      <h2>Meet Maya — your 24/7 baby expert</h2>
+      <p>Like having a pediatric nurse, sleep consultant, and reassuring best friend — all in your pocket.</p>
+    </div>
+    <div class="ai-inner">
+      <div class="ai-text">
+        <h2>Got a question at 2 AM?<br/>Maya has answers.</h2>
+        <p>
+          Is this rash normal? When should I start solids? Why won't she sleep?
+          Maya draws on expert-backed knowledge and your child's own history to give you
+          clear, personalised guidance — without the judgment, without the wait.
+        </p>
+        <ul class="ai-features">
+          <li>Answers personalised to your child's age &amp; milestones</li>
+          <li>Expert-backed knowledge you can trust</li>
+          <li>Available around the clock — no appointment needed</li>
+          <li>Zero judgment, 100% support</li>
+        </ul>
+        <a href="#download" class="btn-primary">Try Maya free →</a>
+      </div>
+      <div class="ai-phone">
+        <div class="phone-showcase">
+          <img src="images/BBA_AI_main.png" alt="Maya AI assistant — intelligent baby guidance" />
+        </div>
+      </div>
+    </div>
+    <div class="ai-supporting">
+      <div class="ai-supporting-item"><img src="images/BBA_AI.png" alt="AI conversation about baby care" loading="lazy" /></div>
+      <div class="ai-supporting-item"><img src="images/BBA_AI2.png" alt="Personalised AI advice" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VOICE STORIES ═══ -->
+<section class="story-section" id="stories">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="hero-badge" style="background:rgba(251,191,36,0.12);color:#d97706;margin:0 auto 1rem">🎙️ Voice Stories</div>
+      <h2>Your voice, their story — forever</h2>
+      <p>The moments you'd forget by morning, captured in your own words and polished into beautiful stories.</p>
+    </div>
+    <div class="story-inner">
+      <div class="story-phone">
+        <div class="phone-showcase">
+          <img src="images/BBA_VoiceStory.png" alt="Voice story recording — just talk and capture the moment" />
+        </div>
+      </div>
+      <div class="story-text">
+        <h2>Just press record<br/>and talk about your day</h2>
+        <p>
+          She laughed for the first time today. He finally grabbed his toes.
+          The bath was chaos but everyone was giggling. Just talk — about the
+          messy, magical, mundane moments — and BabyBaby's AI ghostwriter
+          transforms your words into a beautifully written story you'll treasure forever.
+        </p>
+        <ul class="story-features">
+          <li>Press record and speak naturally — no writing needed</li>
+          <li>AI ghostwriter turns rambles into polished stories</li>
+          <li>Every story becomes a page in your printed book</li>
+          <li>Capture the moments you'd otherwise forget by morning</li>
+        </ul>
+        <a href="#download" class="btn-primary">Record your first story →</a>
+      </div>
+    </div>
+    <div class="story-supporting">
+      <div class="story-supporting-item"><img src="images/BBA_VoiceStory2.png" alt="Recording a voice story" loading="lazy" /></div>
+      <div class="story-supporting-item"><img src="images/BBA_VoiceStory3.png" alt="AI-polished story result" loading="lazy" /></div>
     </div>
   </div>
 </section>
@@ -440,13 +599,14 @@
   <div class="section-inner">
     <div class="print-inner">
       <div class="print-image">
-        <img src="images/BBA_PRint5.png" alt="Book summary with pricing" loading="lazy" />
+        <img src="images/BBA_Memories.png" alt="Beautiful baby memories ready to print" loading="lazy" />
       </div>
       <div class="print-text">
         <h2>From screen to keepsake — print a real baby book</h2>
         <p>
-          Choose your favourite memories, customize your cover, and we'll print a
-          beautiful hardcover or softcover book and ship it right to your door.
+          Every giggle, every milestone, every sleepy cuddle — your memories deserve
+          more than a phone screen. Turn your journal entries, photos, and AI-written stories
+          into a stunning printed book you can hold, flip through, and pass down for generations.
         </p>
         <ul class="print-features">
           <li>Choose from hardcover or softcover</li>
@@ -538,8 +698,10 @@
     <div class="footer-brand">👶 BabyBaby</div>
     <div class="footer-links">
       <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
+      <a href="#ai">AI Guide</a>
+      <a href="#stories">Stories</a>
       <a href="#print">Print</a>
+      <a href="#pricing">Pricing</a>
       <a href="mailto:hello@babybabyapp.com">Contact</a>
       <a href="/terms.html">Terms of Service</a>
       <a href="/privacy.html">Privacy Policy</a>
