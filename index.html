@@ -91,8 +91,9 @@
     .btn-nav {
       display: inline-flex; align-items: center; gap: 0.4rem;
       padding: 0.5rem 1.2rem; border-radius: 999px; font-weight: 600; font-size: 0.85rem;
-      background: var(--gradient); color: #fff; text-decoration: none;
+      background: var(--gradient); color: #fff !important; text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer;
+      -webkit-text-fill-color: #fff;
     }
     .btn-nav:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(244,114,182,0.3); }
 
@@ -761,8 +762,8 @@
     goToSlide((currentSlide + dir + slides.length) % slides.length);
   }
 
-  // Auto-advance every 7 seconds
-  setInterval(() => changeSlide(1), 7000);
+  // Auto-advance every 12 seconds
+  setInterval(() => changeSlide(1), 12000);
 </script>
 
 <!-- ═══ CTA ═══ -->
