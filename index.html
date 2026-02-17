@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baby Baby — Track, Remember & Cherish Every Moment</title>
+  <meta name="description" content="The all-in-one baby tracker and memory keeper. Log feedings, sleep & diapers. Create beautiful AI-powered stories. Print a real baby book." />
+  <meta name="author" content="Baby Baby" />
+  <link rel="canonical" href="https://babybabyapp.com" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://babybabyapp.com" />
+  <meta property="og:title" content="Baby Baby — Track, Remember & Cherish Every Moment" />
+  <meta property="og:description" content="The all-in-one baby tracker and memory keeper. Log feedings, sleep & diapers. Create beautiful AI-powered stories. Print a real baby book." />
+  <meta property="og:image" content="https://babybabyapp.com/images/og-image.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Baby Baby — Track, Remember & Cherish Every Moment" />
+  <meta name="twitter:description" content="The all-in-one baby tracker and memory keeper." />
+  <meta name="twitter:image" content="https://babybabyapp.com/images/og-image.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👶</text></svg>" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --pink: #f472b6;
+      --pink-dark: #ec4899;
+      --purple: #a78bfa;
+      --blue: #60a5fa;
+      --peach: #fbbf24;
+      --bg: #fefce8;
+      --bg-card: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --radius: 1rem;
+      --shadow: 0 4px 24px rgba(0,0,0,0.06);
+      --gradient: linear-gradient(135deg, var(--pink) 0%, var(--purple) 50%, var(--blue) 100%);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    /* ── Nav ─────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(254,252,232,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+    }
+    .logo {
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.4rem;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .btn-nav {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.5rem 1.2rem; border-radius: 999px; font-weight: 600; font-size: 0.85rem;
+      background: var(--gradient); color: #fff; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer;
+    }
+    .btn-nav:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(244,114,182,0.3); }
+
+    /* ── Hero ────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 6rem 1.5rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -40%; right: -20%;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(244,114,182,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -30%; left: -15%;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(167,139,250,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-text { max-width: 520px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.35rem 0.9rem; border-radius: 999px;
+      background: rgba(244,114,182,0.1); color: var(--pink-dark);
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; margin-bottom: 1rem;
+    }
+    .hero h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); margin-bottom: 1rem; }
+    .hero h1 span {
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 440px; }
+    .hero-buttons { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem; border-radius: 999px; font-weight: 700; font-size: 1rem;
+      background: var(--gradient); color: #fff; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(244,114,182,0.25); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem; border-radius: 999px; font-weight: 600; font-size: 1rem;
+      background: var(--bg-card); color: var(--text); text-decoration: none;
+      border: 2px solid rgba(0,0,0,0.08); transition: all 0.2s; cursor: pointer;
+    }
+    .btn-secondary:hover { border-color: var(--pink); color: var(--pink-dark); }
+
+    .hero-phones {
+      position: relative; display: flex; justify-content: center;
+    }
+    .phone-frame {
+      width: 260px; border-radius: 2rem; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
+      transition: transform 0.4s ease;
+    }
+    .phone-frame:hover { transform: translateY(-8px); }
+    .phone-frame img { width: 100%; display: block; }
+    .phone-back {
+      position: absolute; right: -30px; top: 30px; z-index: -1;
+      transform: rotate(6deg);
+      opacity: 0.8;
+    }
+
+    /* ── Section base ────────────────────────────── */
+    section { padding: 5rem 1.5rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-header h2 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); margin-bottom: 0.75rem; }
+    .section-header p { font-size: 1.05rem; color: var(--text-muted); max-width: 560px; margin: 0 auto; }
+
+    /* ── Features grid ───────────────────────────── */
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature-card {
+      background: var(--bg-card); border-radius: var(--radius); padding: 2rem;
+      box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.04);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+    .feature-icon {
+      width: 3rem; height: 3rem; border-radius: 0.75rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1rem;
+    }
+    .feature-card h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+    .feature-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+    .icon-track { background: rgba(96,165,250,0.12); }
+    .icon-memory { background: rgba(244,114,182,0.12); }
+    .icon-ai { background: rgba(167,139,250,0.12); }
+    .icon-print { background: rgba(251,191,36,0.12); }
+    .icon-share { background: rgba(52,211,153,0.12); }
+    .icon-secure { background: rgba(100,116,139,0.12); }
+
+    /* ── Screenshot showcase ─────────────────────── */
+    .showcase {
+      background: linear-gradient(180deg, var(--bg) 0%, #fdf2f8 50%, var(--bg) 100%);
+    }
+    .showcase-scroll {
+      display: flex; gap: 1.5rem; overflow-x: auto;
+      padding: 1rem 0 2rem; scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .showcase-scroll::-webkit-scrollbar { display: none; }
+    .showcase-item {
+      flex: 0 0 auto; scroll-snap-align: center;
+      width: 240px; border-radius: 1.5rem; overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .showcase-item:hover { transform: scale(1.03); }
+    .showcase-item img { width: 100%; display: block; }
+
+    /* ── Pricing ─────────────────────────────────── */
+    .pricing-cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; max-width: 700px; margin: 0 auto;
+    }
+    .price-card {
+      background: var(--bg-card); border-radius: var(--radius); padding: 2rem;
+      box-shadow: var(--shadow); border: 2px solid transparent;
+      text-align: center; position: relative; transition: transform 0.3s;
+    }
+    .price-card:hover { transform: translateY(-4px); }
+    .price-card.featured {
+      border-color: var(--pink);
+      box-shadow: 0 8px 32px rgba(244,114,182,0.15);
+    }
+    .price-badge {
+      position: absolute; top: -0.75rem; left: 50%; transform: translateX(-50%);
+      padding: 0.25rem 1rem; border-radius: 999px;
+      background: var(--gradient); color: #fff;
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .price-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .price-amount { font-family: 'Nunito', sans-serif; font-size: 2.5rem; font-weight: 800; }
+    .price-amount span { font-size: 1rem; font-weight: 500; color: var(--text-muted); }
+    .price-card ul {
+      list-style: none; margin: 1.5rem 0; text-align: left;
+      font-size: 0.9rem; color: var(--text-muted);
+    }
+    .price-card ul li { padding: 0.4rem 0; display: flex; align-items: center; gap: 0.5rem; }
+    .price-card ul li::before { content: '✓'; color: var(--pink-dark); font-weight: 700; }
+    .btn-price {
+      display: block; width: 100%; padding: 0.75rem; border-radius: 999px;
+      font-weight: 700; font-size: 0.95rem; text-decoration: none;
+      transition: all 0.2s; border: none; cursor: pointer;
+    }
+    .btn-price-primary { background: var(--gradient); color: #fff; }
+    .btn-price-primary:hover { box-shadow: 0 4px 16px rgba(244,114,182,0.3); }
+    .btn-price-outline {
+      background: transparent; color: var(--text);
+      border: 2px solid rgba(0,0,0,0.1);
+    }
+    .btn-price-outline:hover { border-color: var(--pink); color: var(--pink-dark); }
+
+    /* ── Print section ───────────────────────────── */
+    .print-section {
+      background: linear-gradient(135deg, #fdf2f8 0%, #ede9fe 100%);
+    }
+    .print-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    .print-image { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .print-image img { width: 100%; display: block; }
+    .print-text h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 1rem; }
+    .print-text p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1rem; }
+    .print-features { list-style: none; margin-bottom: 2rem; }
+    .print-features li {
+      padding: 0.5rem 0; font-size: 0.95rem; display: flex; align-items: center; gap: 0.6rem;
+    }
+    .print-features li::before { content: '📖'; }
+
+    /* ── Testimonial ─────────────────────────────── */
+    .testimonial { text-align: center; background: var(--bg-card); }
+    .testimonial blockquote {
+      font-family: 'Nunito', sans-serif; font-size: 1.4rem; font-weight: 600;
+      font-style: italic; max-width: 640px; margin: 0 auto 1rem;
+      color: var(--text);
+    }
+    .testimonial cite { font-style: normal; color: var(--text-muted); font-size: 0.9rem; }
+
+    /* ── CTA ─────────────────────────────────────── */
+    .cta {
+      text-align: center;
+      background: var(--gradient); color: #fff;
+      padding: 4rem 1.5rem; border-radius: 0;
+    }
+    .cta h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 0.75rem; color: #fff; }
+    .cta p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; }
+    .btn-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 1rem 2.5rem; border-radius: 999px; font-weight: 700; font-size: 1.05rem;
+      background: #fff; color: var(--pink-dark); text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer;
+    }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    /* ── Footer ──────────────────────────────────── */
+    footer {
+      background: var(--text); color: rgba(255,255,255,0.6);
+      padding: 3rem 1.5rem 2rem; text-align: center; font-size: 0.85rem;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-brand { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.1rem; color: #fff; margin-bottom: 0.5rem; }
+
+    /* ── Responsive ──────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
+      .hero-text { max-width: 100%; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .hero-buttons { justify-content: center; }
+      .phone-back { display: none; }
+      .phone-frame { width: 220px; }
+      .print-inner { grid-template-columns: 1fr; text-align: center; }
+      .print-image { order: -1; max-width: 400px; margin: 0 auto; }
+      .print-features { text-align: left; max-width: 360px; margin-left: auto; margin-right: auto; }
+      .nav-links a.hide-mobile { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">👶 Baby Baby</a>
+    <div class="nav-links">
+      <a href="#features" class="hide-mobile">Features</a>
+      <a href="#pricing" class="hide-mobile">Pricing</a>
+      <a href="#print" class="hide-mobile">Print</a>
+      <a href="#download" class="btn-nav">Get the App</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">✨ New: AI-powered stories</div>
+      <h1>Track, remember &amp; <span>cherish every moment</span></h1>
+      <p>
+        The all-in-one baby tracker and memory keeper. Log feedings, sleep &amp; diapers,
+        capture milestones, create beautiful AI stories, and print a real baby book.
+      </p>
+      <div class="hero-buttons">
+        <a href="#download" class="btn-primary">📱 Download Free</a>
+        <a href="#features" class="btn-secondary">See features →</a>
+      </div>
+    </div>
+    <div class="hero-phones">
+      <div class="phone-frame">
+        <img src="images/BabyBabyApp_page1.png" alt="Baby Baby app — home screen" loading="lazy" />
+      </div>
+      <div class="phone-frame phone-back">
+        <img src="images/BabyBabyApp_page2.png" alt="Baby Baby app — tracking" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
+<section id="features">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Everything you need, nothing you don't</h2>
+      <p>Built by parents, for parents. Baby Baby keeps things simple while giving you powerful tools.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon icon-track">🍼</div>
+        <h3>Smart Tracking</h3>
+        <p>Log feedings, sleep, diapers, pumping, medication, and growth — all in one place. See daily summaries and insights at a glance.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-memory">📸</div>
+        <h3>Memory Keeping</h3>
+        <p>Capture first words, first steps, and every milestone in between. Create chapters filled with photos and journal entries.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-ai">🤖</div>
+        <h3>AI Guidance (Maya)</h3>
+        <p>Chat with Maya, your personal AI-powered baby guide. Get instant answers to parenting questions, personalized to your child.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-print">📚</div>
+        <h3>Print a Real Book</h3>
+        <p>Turn your digital memories into a beautifully printed hardcover baby book. Delivered to your door — a keepsake for generations.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-share">👨‍👩‍👧</div>
+        <h3>Family Sharing</h3>
+        <p>Invite your partner, grandparents, or nanny. Everyone can log and view — keeping the whole family in sync.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-secure">🔒</div>
+        <h3>Private &amp; Secure</h3>
+        <p>Your family data is encrypted and never shared. No ads, no tracking cookies. Row-level security means only you see your data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SCREENSHOT SHOWCASE ═══ -->
+<section class="showcase" id="screenshots">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Designed with love</h2>
+      <p>A beautiful, intuitive interface that new parents can use with one hand at 3 AM.</p>
+    </div>
+    <div class="showcase-scroll">
+      <div class="showcase-item"><img src="images/BabyBabyApp_page1.png" alt="Home screen" loading="lazy" /></div>
+      <div class="showcase-item"><img src="images/BabyBabyApp_page2.png" alt="Tracking" loading="lazy" /></div>
+      <div class="showcase-item"><img src="images/BabyBabyApp_page3.png" alt="Memories" loading="lazy" /></div>
+      <div class="showcase-item"><img src="images/BabyBabyApp_page3.1.PNG" alt="Milestones" loading="lazy" /></div>
+      <div class="showcase-item"><img src="images/BabyBabyApp_page3.2.png" alt="AI Story" loading="lazy" /></div>
+      <div class="showcase-item"><img src="images/BabyBabyApp_page4.png" alt="Insights" loading="lazy" /></div>
+      <div class="showcase-item"><img src="images/BabyBabyApp_print.png" alt="Print book" loading="lazy" /></div>
+      <div class="showcase-item"><img src="images/BabyBabyApp_print2.png" alt="Book preview" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRINT SECTION ═══ -->
+<section class="print-section" id="print">
+  <div class="section-inner">
+    <div class="print-inner">
+      <div class="print-image">
+        <img src="images/BabyBabyApp_print.png" alt="Printed baby book" loading="lazy" />
+      </div>
+      <div class="print-text">
+        <h2>From screen to keepsake — print a real baby book</h2>
+        <p>
+          Choose your favourite memories, customize your cover, and we'll print a
+          beautiful hardcover or softcover book and ship it right to your door.
+        </p>
+        <ul class="print-features">
+          <li>Choose from hardcover or softcover</li>
+          <li>High-quality full-colour printing</li>
+          <li>Worldwide shipping</li>
+          <li>Makes a perfect gift for grandparents</li>
+        </ul>
+        <a href="#download" class="btn-primary">Start your book →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section id="pricing">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Simple, honest pricing</h2>
+      <p>Start free. Upgrade when you're ready for unlimited AI and premium features.</p>
+    </div>
+    <div class="pricing-cards">
+      <div class="price-card">
+        <h3>Free</h3>
+        <div class="price-amount">$0<span>/forever</span></div>
+        <ul>
+          <li>Unlimited tracking (feeds, sleep, diapers)</li>
+          <li>Memory keeping &amp; milestones</li>
+          <li>Print a real baby book</li>
+          <li>1 child profile</li>
+          <li>Common questions for Maya</li>
+        </ul>
+        <a href="#download" class="btn-price btn-price-outline">Get started</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">Most Popular</div>
+        <h3>Premium</h3>
+        <div class="price-amount">$3.99<span>/month</span></div>
+        <ul>
+          <li>Everything in Free</li>
+          <li>Unlimited AI guidance (Maya)</li>
+          <li>AI Story ghostwriting</li>
+          <li>Photo analysis</li>
+          <li>Up to 10 child profiles</li>
+          <li>Data export</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#download" class="btn-price btn-price-primary">Start Premium</a>
+        <p style="margin-top:0.75rem;font-size:0.75rem;color:var(--text-muted)">
+          Also available yearly at $39.99/yr (save 2 months!)
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIAL ═══ -->
+<section class="testimonial">
+  <div class="section-inner">
+    <blockquote>"I've tried five different baby trackers. Baby Baby is the only one that combines tracking AND a real baby book. I'm obsessed."</blockquote>
+    <cite>— A very happy parent</cite>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta" id="download">
+  <h2>Start capturing memories today</h2>
+  <p>Free to download. No credit card required.</p>
+  <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
+    <a href="#" class="btn-cta">📱 Download for Android</a>
+    <a href="#" class="btn-cta" style="opacity:0.6;pointer-events:none">🍎 iOS — Coming Soon</a>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">👶 Baby Baby</div>
+    <div class="footer-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#print">Print</a>
+      <a href="mailto:hello@babybabyapp.com">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </div>
+    <p>&copy; 2026 Baby Baby. Made with 💕 for parents everywhere.</p>
+  </div>
+</footer>
+
+</body>
+</html>
