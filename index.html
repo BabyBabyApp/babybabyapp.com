@@ -217,8 +217,8 @@
       background: linear-gradient(180deg, var(--bg) 0%, #fdf2f8 50%, var(--bg) 100%);
     }
     .showcase-scroll {
-      display: flex; gap: 1.5rem; overflow-x: auto; justify-content: center;
-      padding: 1rem 0 2rem; scroll-snap-type: x mandatory;
+      display: flex; gap: 1.5rem; overflow-x: auto;
+      padding: 1rem 1.5rem 2rem; scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       align-items: center;
@@ -422,7 +422,8 @@
       .hero-phones { min-height: 380px; }
       .phone-frame { width: 170px; }
       .hide-on-mobile { display: none !important; }
-      .showcase-item { width: 44vw; height: auto; }
+      .showcase-item { width: 40vw; height: auto; }
+      .showcase-scroll { justify-content: center; padding: 1rem 0 2rem; }
       .phone-front { transform: translateX(-55%) rotate(-2deg); }
       .phone-mid { right: 5px; }
       .phone-back { left: 5px; }
