@@ -239,7 +239,7 @@
     /* ── Pricing ─────────────────────────────────── */
     .pricing-cards {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem; max-width: 700px; margin: 0 auto;
+      gap: 1.5rem; max-width: 1050px; margin: 0 auto;
     }
     .price-card {
       background: var(--bg-card); border-radius: var(--radius); padding: 2rem;
@@ -267,6 +267,10 @@
     }
     .price-card ul li { padding: 0.4rem 0; display: flex; align-items: center; gap: 0.5rem; }
     .price-card ul li::before { content: '✓'; color: var(--pink-dark); font-weight: 700; }
+    .pricing-note {
+      max-width: 1050px; margin: 1.25rem auto 0;
+      color: var(--text-muted); font-size: 0.85rem; text-align: center;
+    }
     .btn-price {
       display: block; width: 100%; padding: 0.75rem; border-radius: 999px;
       font-weight: 700; font-size: 0.95rem; text-decoration: none;
@@ -344,6 +348,18 @@
       transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer;
     }
     .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .download-actions {
+      display: flex; gap: 0.75rem; justify-content: center; align-items: center; flex-wrap: wrap;
+    }
+    .google-play-link {
+      display: inline-flex; align-items: center;
+      transition: transform 0.2s, filter 0.2s;
+    }
+    .google-play-link:hover {
+      transform: translateY(-2px);
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.18));
+    }
+    .google-play-link img { display: block; height: 58px; width: auto; }
 
     /* ── Footer ──────────────────────────────────── */
     footer {
@@ -455,7 +471,7 @@
       <a href="#ai" class="hide-mobile">AI</a>
       <a href="#stories" class="hide-mobile">Stories</a>
       <a href="#print" class="hide-mobile">Print</a>
-      <a href="#download" class="btn-nav">Get the App</a>
+      <a href="https://play.google.com/apps/testing/com.babybabyapp" class="btn-nav" target="_blank" rel="noopener">Get the App</a>
     </div>
   </div>
 </nav>
@@ -470,19 +486,19 @@
         Logs, personalized baby insights, and a printable baby book all in one app.
       </p>
       <div class="hero-buttons">
-        <a href="#download" class="btn-primary">Download Free</a>
+        <a href="https://play.google.com/apps/testing/com.babybabyapp" class="btn-primary" target="_blank" rel="noopener">Download Free</a>
         <a href="#features" class="btn-secondary">See features →</a>
       </div>
     </div>
     <div class="hero-phones">
       <div class="phone-frame phone-back">
-        <img src="images/BBA_BookOverview.png" alt="BabyBaby — Your memories become a real book" loading="lazy" />
+        <img src="images/BBA_BookOverview.webp" alt="BabyBaby — Your memories become a real book" loading="eager" fetchpriority="high" decoding="async" />
       </div>
       <div class="phone-frame phone-front">
-        <img src="images/BabyBabyApp_page1.png" alt="BabyBaby — Home screen" loading="lazy" />
+        <img src="images/BabyBabyApp_page1.webp" alt="BabyBaby — Home screen" loading="eager" fetchpriority="high" decoding="async" />
       </div>
       <div class="phone-frame phone-mid">
-        <img src="images/BabyBabyApp_page2.png" alt="BabyBaby — Smart tracking" loading="lazy" />
+        <img src="images/BabyBabyApp_page2.webp" alt="BabyBaby — Smart tracking" loading="eager" fetchpriority="high" decoding="async" />
       </div>
     </div>
   </div>
@@ -519,7 +535,7 @@
       <div class="feature-card">
         <div class="feature-icon icon-share">👨‍👩‍👧</div>
         <h3>Family Sharing</h3>
-        <p>Standalone $1/mo — invite one partner to log, view, and track milestones. If you also have Premium, your partner gets it too.</p>
+        <p>Standalone €1/mo — invite one partner or caregiver to log, view, and track milestones. If you also have Premium, your partner gets it too.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon icon-secure">🔒</div>
@@ -538,11 +554,11 @@
       <p>A warm, intuitive interface you can navigate with one hand while holding your baby in the other.</p>
     </div>
     <div class="showcase-scroll">
-      <div class="showcase-item"><img src="images/BBA_UI.png" alt="Clean, intuitive tracking" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BBA_UI2.png" alt="Daily overview at a glance" loading="lazy" /></div>
-      <div class="showcase-item hide-on-mobile"><img src="images/BBA_UI3.png" alt="Effortless logging" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BBA_UI4.png" alt="Growth tracking" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BBA_UI5.png" alt="Smart insights" loading="lazy" /></div>
+      <div class="showcase-item"><img src="images/BBA_UI.webp" alt="Clean, intuitive tracking" loading="lazy" decoding="async" /></div>
+      <div class="showcase-item"><img src="images/BBA_UI2.webp" alt="Daily overview at a glance" loading="lazy" decoding="async" /></div>
+      <div class="showcase-item hide-on-mobile"><img src="images/BBA_UI3.webp" alt="Effortless logging" loading="lazy" decoding="async" /></div>
+      <div class="showcase-item"><img src="images/BBA_UI4.webp" alt="Growth tracking" loading="lazy" decoding="async" /></div>
+      <div class="showcase-item"><img src="images/BBA_UI5.webp" alt="Smart insights" loading="lazy" decoding="async" /></div>
     </div>
   </div>
 </section>
@@ -573,13 +589,13 @@
       </div>
       <div class="ai-phone">
         <div class="phone-showcase">
-          <img src="images/BBA_AI_main.png" alt="Maya AI assistant — intelligent baby guidance" />
+          <img src="images/BBA_AI_main.webp" alt="Maya AI assistant — intelligent baby guidance" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
     <div class="ai-supporting">
-      <div class="ai-supporting-item"><img src="images/BBA_AI.png" alt="AI conversation about baby care" loading="lazy" /></div>
-      <div class="ai-supporting-item"><img src="images/BBA_AI2.png" alt="Personalised AI advice" loading="lazy" /></div>
+      <div class="ai-supporting-item"><img src="images/BBA_AI.webp" alt="AI conversation about baby care" loading="lazy" decoding="async" /></div>
+      <div class="ai-supporting-item"><img src="images/BBA_AI2.webp" alt="Personalised AI advice" loading="lazy" decoding="async" /></div>
     </div>
   </div>
 </section>
@@ -595,7 +611,7 @@
     <div class="story-inner">
       <div class="story-phone">
         <div class="phone-showcase">
-          <img src="images/BBA_VoiceStory.png" alt="Voice story recording — just talk and capture the moment" />
+          <img src="images/BBA_VoiceStory.webp" alt="Voice story recording — just talk and capture the moment" loading="lazy" decoding="async" />
         </div>
       </div>
       <div class="story-text">
@@ -616,8 +632,8 @@
       </div>
     </div>
     <div class="story-supporting">
-      <div class="story-supporting-item"><img src="images/BBA_VoiceStory2.png" alt="Recording a voice story" loading="lazy" /></div>
-      <div class="story-supporting-item"><img src="images/BBA_VoiceStory3.png" alt="AI-polished story result" loading="lazy" /></div>
+      <div class="story-supporting-item"><img src="images/BBA_VoiceStory2.webp" alt="Recording a voice story" loading="lazy" decoding="async" /></div>
+      <div class="story-supporting-item"><img src="images/BBA_VoiceStory3.webp" alt="AI-polished story result" loading="lazy" decoding="async" /></div>
     </div>
   </div>
 </section>
@@ -627,7 +643,7 @@
   <div class="section-inner">
     <div class="print-inner">
       <div class="print-image">
-        <img src="images/BBA_Memories.png" alt="Beautiful baby memories ready to print" loading="lazy" />
+        <img src="images/BBA_Memories.webp" alt="Beautiful baby memories ready to print" loading="lazy" decoding="async" />
       </div>
       <div class="print-text">
         <h2>From screen to keepsake — print a real baby book</h2>
@@ -650,12 +666,12 @@
 
     <!-- Print wizard showcase -->
     <div class="showcase-scroll" style="margin-top: 2.5rem;">
-      <div class="showcase-item"><img src="images/BBA_PRint1.png" alt="Step 1 — Choose book size" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BBA_PRint2.png" alt="Step 2 — Pick your cover" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BBA_PRint3.png" alt="Step 3 — Print quality" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BBA_PRint4.png" alt="Step 4 — Paper & finish" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BBA_PRint5.png" alt="Step 5 — Book summary" loading="lazy" /></div>
-      <div class="showcase-item"><img src="images/BBA_PrintCompleted.png" alt="Order completed &amp; history" loading="lazy" /></div>
+      <div class="showcase-item"><img src="images/BBA_PRint1.webp" alt="Step 1 — Choose book size" loading="lazy" decoding="async" /></div>
+      <div class="showcase-item"><img src="images/BBA_PRint2.webp" alt="Step 2 — Pick your cover" loading="lazy" decoding="async" /></div>
+      <div class="showcase-item"><img src="images/BBA_PRint3.webp" alt="Step 3 — Print quality" loading="lazy" decoding="async" /></div>
+      <div class="showcase-item"><img src="images/BBA_PRint4.webp" alt="Step 4 — Paper & finish" loading="lazy" decoding="async" /></div>
+      <div class="showcase-item"><img src="images/BBA_PRint5.webp" alt="Step 5 — Book summary" loading="lazy" decoding="async" /></div>
+      <div class="showcase-item"><img src="images/BBA_PrintCompleted.webp" alt="Order completed &amp; history" loading="lazy" decoding="async" /></div>
     </div>
   </div>
 </section>
@@ -670,7 +686,7 @@
     <div class="pricing-cards">
       <div class="price-card">
         <h3>Free</h3>
-        <div class="price-amount">$0<span>/month</span></div>
+        <div class="price-amount">€0<span>/month</span></div>
         <ul>
           <li>Unlimited tracking (feeds, sleep, diapers)</li>
           <li>Memory keeping &amp; milestones</li>
@@ -683,7 +699,7 @@
       <div class="price-card featured">
         <div class="price-badge">Most Popular</div>
         <h3>Premium</h3>
-        <div class="price-amount">$3.99<span>/month</span></div>
+        <div class="price-amount">€3.49<span>/month</span></div>
         <ul>
           <li>Everything in Free</li>
           <li>Unlimited AI guidance (Maya)</li>
@@ -695,11 +711,23 @@
         </ul>
         <a href="#download" class="btn-price btn-price-primary">Start Premium</a>
         <p style="margin-top:0.75rem;font-size:0.75rem;color:var(--text-muted)">
-          Also available yearly at $39.99/yr — €34.99/yr (save 2 months!)<br/>
-          Optional Family Sharing add-on: $1/mo to invite one partner.
+          Also available yearly at €34.99/year (save 2 months!)
         </p>
       </div>
+      <div class="price-card">
+        <h3>Family Sharing</h3>
+        <div class="price-amount">€1<span>/month</span></div>
+        <ul>
+          <li>Invite one partner or caregiver</li>
+          <li>Shared baby profile and logs</li>
+          <li>Sync memories and milestones</li>
+          <li>Premium sharing when active</li>
+          <li>Standalone, no Premium required</li>
+        </ul>
+        <a href="#download" class="btn-price btn-price-outline">Get Family Sharing</a>
+      </div>
     </div>
+    <p class="pricing-note">All prices shown in EUR, + VAT where applicable.</p>
   </div>
 </section>
 
@@ -778,8 +806,10 @@
 <section class="cta" id="download">
   <h2>Start capturing memories today</h2>
   <p>Free to download. No credit card required.</p>
-  <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
-    <a href="#" class="btn-cta">📱 Download for Android</a>
+  <div class="download-actions">
+    <a href="https://play.google.com/apps/testing/com.babybabyapp" class="google-play-link" target="_blank" rel="noopener" aria-label="Download BabyBaby for Android on Google Play">
+      <img src="images/google-play-badge.svg" alt="Get it on Google Play" loading="lazy" decoding="async" />
+    </a>
     <a href="#" class="btn-cta" style="opacity:0.6;pointer-events:none">🍎 iOS — Coming Soon</a>
   </div>
 </section>
