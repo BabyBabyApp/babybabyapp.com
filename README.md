@@ -6,4 +6,6 @@ The main film is `media/babybaby-film.mp4` with matching English WebVTT captions
 
 Before publishing, validate the four HTML pages and their local links/assets, check JavaScript syntax with `node --check site.js`, and ensure the preview returns HTTP 200. No framework or package installation is required.
 
-September 2026 changes: main film first; warm cream/terracotta design; current product screenshots; care, memories, book, voice/Maya/family sections; existing early-family quotes and pricing; QR/download links to the production Android package. The public domain is configured by the existing CNAME and publishing setup. Sites holds a separate private review deployment.
+September 2026 changes: main film first; warm cream/terracotta design; current product screenshots; care, memories, book, voice/Maya/family sections; existing early-family quotes and pricing; QR/download links to the production Android package. The public domain is configured by the existing CNAME and publishing setup. A Sites review project is registered but has not been deployed; production remains on GitHub Pages.
+
+The hero now uses the approved 32.5-second landscape film with final narration and supplied music. Captions and the accessible transcript match this edit.
