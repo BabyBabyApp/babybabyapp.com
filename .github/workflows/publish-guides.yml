@@ -1,0 +1,82 @@
+name: Publish BabyBaby guide
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/publish-guides.yml
+  schedule:
+    # Daily catch-up check. A guide is written only when its weekly slot is due.
+    # Minute 17 avoids GitHub's busiest start-of-hour scheduling period.
+    - cron: "17 10 * * *"
+      timezone: Europe/Berlin
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Optional calendar slug to publish immediately"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: babybaby-guide-publisher
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Prepare the next guide
+        id: guide
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GUIDES_OPENAI_MODEL: ${{ vars.GUIDES_OPENAI_MODEL }}
+          REQUESTED_SLUG: ${{ inputs.slug || '' }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "push" ]; then
+            # This initial push publishes the already-researched guide as the test.
+            node scripts/publish-guide.mjs --slug tummy-time-when-baby-hates-it --force
+          elif [ -n "$REQUESTED_SLUG" ]; then
+            node scripts/publish-guide.mjs --slug "$REQUESTED_SLUG" --force
+          else
+            node scripts/publish-guide.mjs
+          fi
+      - name: Validate and commit the guide
+        if: steps.guide.outputs.published == 'true'
+        run: |
+          git diff --check
+          node --check scripts/publish-guide.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add guides dist/guides sitemap.xml dist/sitemap.xml
+          git commit -m "Publish BabyBaby guide: ${{ steps.guide.outputs.slug }}"
+          git push origin HEAD:main
+      - name: Request a GitHub Pages build
+        if: steps.guide.outputs.published == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
+      - name: Verify the published guide
+        if: steps.guide.outputs.published == 'true'
+        env:
+          GUIDE_URL: ${{ steps.guide.outputs.guide_url }}
+        run: |
+          for attempt in $(seq 1 40); do
+            body=$(curl --fail --silent --show-error --location "$GUIDE_URL" 2>/dev/null || true)
+            if [[ "$body" == *"rel=\"canonical\" href=\"$GUIDE_URL\""* ]]; then
+              echo "Published and verified: $GUIDE_URL"
+              echo "Published guide: $GUIDE_URL" >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "Guide was committed, but the live URL did not verify: $GUIDE_URL" >&2
+          exit 1
