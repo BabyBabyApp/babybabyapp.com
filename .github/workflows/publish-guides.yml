@@ -5,8 +5,10 @@ on:
     branches: [main]
     paths:
       - .github/workflows/publish-guides.yml
+      - editorial/drafts/**
+      - editorial/calendar.json
   schedule:
-    # Daily catch-up check. A guide is written only when its weekly slot is due.
+    # Daily catch-up check. A prepared guide is published only when its slot is due.
     # Minute 17 avoids GitHub's busiest start-of-hour scheduling period.
     - cron: "17 10 * * *"
       timezone: Europe/Berlin
@@ -34,17 +36,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Prepare the next guide
+      - name: Publish the next prepared guide if due
         id: guide
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          GUIDES_OPENAI_MODEL: ${{ vars.GUIDES_OPENAI_MODEL }}
           REQUESTED_SLUG: ${{ inputs.slug || '' }}
         run: |
-          if [ "$GITHUB_EVENT_NAME" = "push" ]; then
-            # This initial push publishes the already-researched guide as the test.
-            node scripts/publish-guide.mjs --slug tummy-time-when-baby-hates-it --force
-          elif [ -n "$REQUESTED_SLUG" ]; then
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] && [ -n "$REQUESTED_SLUG" ]; then
             node scripts/publish-guide.mjs --slug "$REQUESTED_SLUG" --force
           else
             node scripts/publish-guide.mjs
