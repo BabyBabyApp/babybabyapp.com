@@ -3,6 +3,7 @@ import { readFile, writeFile, mkdir, copyFile, access, appendFile } from 'node:f
 import { statSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { renderGuideCard } from './guide-card.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const calendar = JSON.parse(await readFile(path.join(root, 'editorial/calendar.json'), 'utf8'));
@@ -18,9 +19,6 @@ const today = `${datePart('year')}-${datePart('month')}-${datePart('day')}`;
 
 const exists = async (file) => access(file).then(() => true, () => false);
 const siteFile = (file) => path.join(root, file);
-const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({
-  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
-})[char]);
 const displayDate = (date) => new Intl.DateTimeFormat('en-US', {
   timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric',
 }).format(new Date(`${date}T12:00:00Z`));
@@ -76,10 +74,10 @@ await writeFile(siteFile(guideRelative), html);
 
 const listingPath = siteFile('guides/index.html');
 let listing = await readFile(listingPath, 'utf8');
-const listStart = '<div class="guides-list prose">';
+const listStart = '<div class="guides-list">';
 if (!listing.includes(listStart)) throw new Error('Could not find the guides listing container.');
 if (listing.includes(`href="${entry.slug}/"`)) throw new Error(`Guide listing already contains ${entry.slug}.`);
-const card = `<article class="guide-cta"><p class="eyebrow">${escapeHtml(entry.category)}</p><h2><a href="${entry.slug}/">${escapeHtml(entry.title)}</a></h2><p>${escapeHtml(entry.summary)}</p><a class="button" href="${entry.slug}/">Read the guide <span aria-hidden="true">↗</span></a></article>`;
+const card = renderGuideCard(entry, html);
 listing = listing.replace(listStart, `${listStart}${card}`);
 await writeFile(listingPath, listing);
 
